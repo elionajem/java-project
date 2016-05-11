@@ -57,15 +57,25 @@ public class table extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("pattiserie?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        customerInfoQuery3 = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT c FROM CustomerInfo c");
-        customerInfoList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerInfoQuery3.getResultList();
+        samplePUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory(null).createEntityManager();
+        customerQuery = java.beans.Beans.isDesignTime() ? null : samplePUEntityManager.createQuery("SELECT c FROM Customer c");
+        customerList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerQuery.getResultList();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory(null).createEntityManager();
+        columnsPrivQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ColumnsPriv c");
+        columnsPrivList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : columnsPrivQuery.getResultList();
+        entityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory(null).createEntityManager();
+        customerInfoQuery = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT c FROM CustomerInfo c");
+        customerInfoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerInfoQuery.getResultList();
+        customerInfoQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT c FROM CustomerInfo c");
+        customerInfoList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerInfoQuery1.getResultList();
+        customerInfoQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager0.createQuery("SELECT c FROM CustomerInfo c");
+        customerInfoList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerInfoQuery2.getResultList();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblpatisserie = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customerInfoList3, tblpatisserie);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customerInfoList2, tblpatisserie);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idcustomerInfo}"));
         columnBinding.setColumnName("Idcustomer Info");
         columnBinding.setColumnClass(Integer.class);
@@ -86,6 +96,9 @@ public class table extends javax.swing.JFrame {
         columnBinding.setColumnClass(java.util.Date.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${product}"));
         columnBinding.setColumnName("Product");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
+        columnBinding.setColumnName("Price");
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
@@ -149,10 +162,20 @@ public class table extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.util.List<Patisserie.CustomerInfo> customerInfoList3;
-    private javax.persistence.Query customerInfoQuery3;
+    private java.util.List<Patisserie.ColumnsPriv> columnsPrivList;
+    private javax.persistence.Query columnsPrivQuery;
+    private java.util.List<Patisserie.CustomerInfo> customerInfoList;
+    private java.util.List<Patisserie.CustomerInfo> customerInfoList1;
+    private java.util.List<Patisserie.CustomerInfo> customerInfoList2;
+    private javax.persistence.Query customerInfoQuery;
+    private javax.persistence.Query customerInfoQuery1;
+    private javax.persistence.Query customerInfoQuery2;
+    private java.util.List<Patisserie.Customer> customerList;
+    private javax.persistence.Query customerQuery;
+    private javax.persistence.EntityManager entityManager;
     private javax.persistence.EntityManager entityManager0;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.persistence.EntityManager samplePUEntityManager;
     private javax.swing.JTable tblpatisserie;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
